@@ -2,16 +2,27 @@
 
 @section('content')
   <div class="col-sm-9 col-md-9 col-lg-9 float-left">
-    <h1> Create a new company</h1>
+    <h1>Create a new project</h1>
     <!-- Example row of columns -->
     <div class="col-sm-12 col-md-12 col-lg-12" style="background: white; margin: 10px;">
-      <form method="post" action="{{ route('companies.store') }}">
+      <form method="post" action="{{ route('projects.store') }}">
         {{ csrf_field() }}
 
         <div class="form-group">
-          <label for="company-name">Name<span class="required">*</span></label>
+          <label for="project-name">Company ID<span class="required">*</span></label>
+          <input
+            id="company-id"
+            required
+            name="company_id"
+            value="{{ $company_id }}"
+            disabled
+            class="form-control"
+          />
+        </div>
+        <div class="form-group">
+          <label for="project-name">Name<span class="required">*</span></label>
           <input placeholder="Enter name"
-            id="Company-name"
+            id="project-name"
             required
             name="name"
             spellcheck="false"
@@ -20,9 +31,9 @@
         </div>
 
         <div class="form-group">
-          <label for="company-content">Description</label>
+          <label for="project-content">Description</label>
           <textarea placeholder="Enter description"
-            id="company-content"
+            id="project-content"
             name="description"
             rows="5"
             spellcheck="false"
@@ -45,7 +56,7 @@
     <div class="p-3">
       <h4 class="font-italic">Actions</h4>
       <ol class="list-unstyled">
-        <li><a href="/companies/">All companies</a></li>
+        <li><a href="/projects/">All projects</a></li>
       </ol>
     </div>
 

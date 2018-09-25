@@ -16,10 +16,17 @@ class CompaniesController extends Controller
     public function index()
     {
         //
-        $companies = Company::all();
+        // dump() to debug code
+        //dump(Auth::user()->id);
 
-        return view('companies.index', ['companies' => $companies]);
+        if(Auth::check()){
+          // in the end query used get() to retrieve all rows from table in db
+          $companies = Company::where('user_id', Auth::user()->id)->get();
 
+          return view('companies.index', ['companies' => $companies]);
+        }
+
+        return view('auth.login');
     }
 
     /**
@@ -81,7 +88,7 @@ class CompaniesController extends Controller
      */
     public function edit(Company $company)
     {
-        //
+        // in the end of query used first() to retrieve a single row from table in db
         $comp = Company::where('id', $company->id)->first();
 
         return view('companies.edit', ['company'=>$comp]);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectsController extends Controller
 {
@@ -15,6 +16,17 @@ class ProjectsController extends Controller
     public function index()
     {
         //
+        // dump() to debug code
+        //dump(Auth::user()->id);
+
+        if(Auth::check()){
+          // in the end query used get() to retrieve all rows from table in db
+          $projects = Project::where('user_id', Auth::user()->id)->get();
+
+          return view('projects.index', ['projects' => $projects]);
+        }
+
+        return view('auth.login');
     }
 
     /**
@@ -22,9 +34,10 @@ class ProjectsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($company_id = null)
     {
         //
+        return view('projects.create', ['company_id'=>$company_id]);
     }
 
     /**
@@ -36,6 +49,21 @@ class ProjectsController extends Controller
     public function store(Request $request)
     {
         //
+        if (Auth::check()) {
+          $projCreate = Project::create([
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'company_id' => $request->input('company_id'),
+            'user_id' => Auth::user()->id
+          ]);
+
+          if ($projCreate) {
+            return redirect()->route('projects.show', ['Project'=>$projCreate])
+                              ->with('success', 'Project created succesfully !');
+          }
+        }
+
+        return back()->withInput()->with('errors', 'Error creating a new Project !');
     }
 
     /**
@@ -47,6 +75,10 @@ class ProjectsController extends Controller
     public function show(Project $project)
     {
         //
+        //$Proj = Project::where('id', $project->id)->first();
+        $Proj = Project::find($project->id);
+
+        return view('projects.show', ['project'=>$Proj]);
     }
 
     /**
@@ -57,7 +89,10 @@ class ProjectsController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        // in the end of query used first() to retrieve a single row from table in db
+        $Proj = Project::where('id', $project->id)->first();
+
+        return view('projects.edit', ['Project'=>$Proj]);
     }
 
     /**
@@ -70,6 +105,17 @@ class ProjectsController extends Controller
     public function update(Request $request, Project $project)
     {
         //
+        $ProjUpdate = Project::where('id', $project->id)
+                              ->update([
+                                'name' => $request->input('name'),
+                                'description' => $request->input('description')
+                              ]);
+
+        if($ProjUpdate){
+          return redirect()->route('projects.show', ['Project'=>$project->id])
+                          ->with('success', 'Project update success');
+        }
+        return back()->withInput();
     }
 
     /**
@@ -81,5 +127,14 @@ class ProjectsController extends Controller
     public function destroy(Project $project)
     {
         //
+        $findProject = Project::where('id', $project->id)->first();
+
+        if($findProject->delete()){
+          return redirect()->route('projects.index')
+                ->with('success', 'Project deleted succesfully !');
+        }
+
+        return back()->withInput()->with('errors', 'Project could not be deleted !');
+
     }
 }

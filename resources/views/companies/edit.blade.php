@@ -2,6 +2,7 @@
 
 @section('content')
   <div class="col-sm-9 col-md-9 col-lg-9 float-left">
+    <h1> Edit a company</h1>
     <!-- Example row of columns -->
     <div class="col-sm-12 col-md-12 col-lg-12" style="background: white; margin: 10px;">
       <form method="post" action="{{ route('companies.update', [$company->id]) }}">
