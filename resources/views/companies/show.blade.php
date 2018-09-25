@@ -11,24 +11,22 @@
 
     <!-- Example row of columns -->
     <div class="row" style="background: white; margin: 10px;">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <a class="btn btn-outline-secondary btn-md float-right" href="/companies/create">Add projects</a>
+      </div>
+
       @foreach($company->projects as $project)
-      <div class="col-md-4 col-sm-4">
+      <div class="col-md-4 col-sm-4 col-lg-4 float-left">
         <h2>{{ $project->name }}</h2>
         <p>{{ $project->description }}</p>
         <p><a class="btn btn-secondary" href="/project/{{ $project->id }}" role="button">View project »</a></p>
       </div>
       @endforeach
+
     </div>
   </div>
 
   <div class="col-sm-3 col-md-3 col-lg-3 float-right">
-    <!--
-    <div class="p-3 mb-3 bg-light rounded">
-      <h4 class="font-italic">About</h4>
-      <p class="mb-0">Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-    </div>
-    -->
-
     <div class="p-3">
       <h4 class="font-italic">Actions</h4>
       <ol class="list-unstyled">

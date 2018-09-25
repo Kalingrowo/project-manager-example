@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CompaniesController extends Controller
 {
@@ -41,6 +42,20 @@ class CompaniesController extends Controller
     public function store(Request $request)
     {
         //
+        if (Auth::check()) {
+          $compCreate = Company::create([
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'user_id' => Auth::user()->id
+          ]);
+
+          if ($compCreate) {
+            return redirect()->route('companies.show', ['company'=>$compCreate])
+                              ->with('success', 'Company created succesfully !');
+          }
+        }
+
+        return back()->withInput()->with('errors', 'Error creating a new Company !');
     }
 
     /**
@@ -111,7 +126,7 @@ class CompaniesController extends Controller
                 ->with('success', 'Company deleted succesfully !');
         }
 
-        return back()->withInput()->with('error', 'Company could not be deleted !');
+        return back()->withInput()->with('errors', 'Company could not be deleted !');
 
     }
 }

@@ -7,8 +7,6 @@
       <form method="post" action="{{ route('companies.store') }}">
         {{ csrf_field() }}
 
-        <input type="hidden" name="_method" value="put">
-
         <div class="form-group">
           <label for="company-name">Name<span class="required">*</span></label>
           <input placeholder="Enter name"
