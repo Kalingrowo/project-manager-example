@@ -58,7 +58,7 @@ class ProjectsController extends Controller
           ]);
 
           if ($projCreate) {
-            return redirect()->route('projects.show', ['Project'=>$projCreate])
+            return redirect()->route('projects.show', ['project'=>$projCreate])
                               ->with('success', 'Project created succesfully !');
           }
         }
@@ -92,7 +92,7 @@ class ProjectsController extends Controller
         // in the end of query used first() to retrieve a single row from table in db
         $Proj = Project::where('id', $project->id)->first();
 
-        return view('projects.edit', ['Project'=>$Proj]);
+        return view('projects.edit', ['project'=>$Proj]);
     }
 
     /**
@@ -112,7 +112,7 @@ class ProjectsController extends Controller
                               ]);
 
         if($ProjUpdate){
-          return redirect()->route('projects.show', ['Project'=>$project->id])
+          return redirect()->route('projects.show', ['project'=>$project->id])
                           ->with('success', 'Project update success');
         }
         return back()->withInput();

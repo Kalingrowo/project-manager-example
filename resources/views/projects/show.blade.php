@@ -3,8 +3,8 @@
 @section('content')
   <div class="col-sm-9 col-md-9 col-lg-9 float-left">
     <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-      <h1 class="display-3">{{ $project->name }}</h1>
+    <div class="card card-header">
+      <h1 class="display-3">Project : <br /> {{ $project->name }}</h1>
       <p>{{ $project->description }}</p>
       <!-- <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more »</a></p> -->
     </div>
@@ -32,14 +32,12 @@
     <div class="p-3">
       <h4 class="font-italic">Actions</h4>
       <ol class="list-unstyled">
-        <li><a href="/projects/create">Add a project</a></li>
-        <br />
-
-        <li><a href="/projects/create">Create a new project</a></li>
         <li><a href="/projects">All projects</a></li>
+        <li><a href="#">Add new member</a></li>
         <br />
-
         <li><a href="/projects/{{ $project->id }}/edit">Edit</a></li>
+
+        @if($project->user_id == Auth::user()->id)
         <li>
           <a
             href="/projects/{{ $project->id }}"
@@ -59,7 +57,8 @@
           </form>
 
         </li>
-        <li><a href="#">Add new member</a></li>
+        @endif
+
       </ol>
     </div>
 

@@ -26,6 +26,7 @@
     </div>
   </div>
 
+  <!-- Right content -->
   <div class="col-sm-3 col-md-3 col-lg-3 float-right">
     <div class="p-3">
       <h4 class="font-italic">Actions</h4>
