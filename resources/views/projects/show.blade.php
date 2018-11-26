@@ -11,9 +11,55 @@
 
     <!-- Example row of columns -->
     <div class="row" style="background: white; margin: 10px;">
+      <!--
       <div class="col-sm-12 col-md-12 col-lg-12">
         <a class="btn btn-outline-secondary btn-md float-right" href="/projects/create">Add projects</a>
       </div>
+      -->
+
+      <br />
+        <!-- Comments section -->
+        <div class="col-sm-12 col-md-12 col-lg-12 float-left">
+          <!-- Example row of columns -->
+          <div class="col-sm-12 col-md-12 col-lg-12" style="background: white; margin: 10px;">
+            <form method="post" action="{{ route('comments.store') }}">
+              {{ csrf_field() }}
+              <!-- Pass hidden value -->
+              <input type="hidden" name="commentable_type" value="Project">
+              <input type="hidden" name="commentable_id" value="{{ $project->id }}">
+              <!-- Input comment -->
+              <div class="form-group">
+                <label for="comment-content">Comment</label>
+                <textarea placeholder="Enter comment"
+                  id="comment-content"
+                  name="body"
+                  rows="4"
+                  spellcheck="false"
+                  class="form-control text-left">
+                </textarea>
+              </div>
+              <!-- Input url/screenshots -->
+              <div class="form-group">
+                <label for="comment-content">Proof of work done (Url/Photos)</label>
+                <textarea placeholder="Enter url or screenshots"
+                  style="resize: vertical"
+                  id="comment-content"
+                  name="url"
+                  rows="3"
+                  spellcheck="false"
+                  class="form-control text-left">
+                </textarea>
+              </div>
+              <!-- Submit comment -->
+              <div class="form-group">
+                <input type="submit"
+                  class="btn btn-primary"
+                  value="submit" />
+              </div>
+            </form>
+          </div>
+        </div>
+
 
       {{--
       @foreach($project->projects as $project)
