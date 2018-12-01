@@ -76,8 +76,8 @@ class CompaniesController extends Controller
         //
         //$comp = Company::where('id', $company->id)->first();
         $comp = Company::find($company->id);
-
-        return view('companies.show', ['company'=>$comp]);
+        $Comments = $company->comments;
+        return view('companies.show', ['company'=>$comp, 'comments'=>$Comments]);
     }
 
     /**

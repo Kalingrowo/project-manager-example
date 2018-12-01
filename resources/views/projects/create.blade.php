@@ -7,18 +7,27 @@
     <div class="col-sm-12 col-md-12 col-lg-12" style="background: white; margin: 10px;">
       <form method="post" action="{{ route('projects.store') }}">
         {{ csrf_field() }}
-
+        <!-- company ID -->
+        @if($companies == null)
+        <input
+          type="hidden"
+          id="company-id"
+          name="company_id"
+          value="{{ $company_id }}"
+        />
+        @endif
+        <!-- company list (dropdown) -->
+        @if($companies != null)
         <div class="form-group">
-          <label for="project-name">Company ID<span class="required">*</span></label>
-          <input
-            id="company-id"
-            required
-            name="company_id"
-            value="{{ $company_id }}"
-            disabled
-            class="form-control"
-          />
+          <label for="company-content">Select Company</label>
+          <select name="company_id" class="form-control">
+            @foreach($companies as $company)
+            <option value="{{ $company->id }}">{{ $company->name }}</option>
+            @endforeach
+          </select>
         </div>
+        @endif
+        <!-- project name form input -->
         <div class="form-group">
           <label for="project-name">Name<span class="required">*</span></label>
           <input placeholder="Enter name"
@@ -29,7 +38,6 @@
             class="form-control"
           />
         </div>
-
         <div class="form-group">
           <label for="project-content">Description</label>
           <textarea placeholder="Enter description"

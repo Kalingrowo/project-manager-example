@@ -9,12 +9,12 @@
       <!-- <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more »</a></p> -->
     </div>
 
-    <!-- Example row of columns -->
+    <!-- contents -->
     <div class="row" style="background: white; margin: 10px;">
       <div class="col-sm-12 col-md-12 col-lg-12">
         <a class="btn btn-outline-secondary btn-md float-right" href="/projects/create/{{ $company->id }}">Add projects</a>
       </div>
-
+      <!-- projects list -->
       @foreach($company->projects as $project)
       <div class="col-md-4 col-sm-4 col-lg-4 float-left">
         <h2>{{ $project->name }}</h2>
@@ -22,7 +22,8 @@
         <p><a class="btn btn-secondary" href="/projects/{{ $project->id }}" role="button">View project »</a></p>
       </div>
       @endforeach
-
+      <!-- end project list -->
+      </div>
     </div>
   </div>
 
