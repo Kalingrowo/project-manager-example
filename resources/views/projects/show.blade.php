@@ -70,12 +70,12 @@
   <!-- right side menu -->
   <div class="col-sm-3 col-md-3 col-lg-3 float-right">
     <div class="p-3">
-      <h4 class="font-italic">Actions</h4>
+      <h4>Actions</h4>
       <ol class="list-unstyled">
-        <li><a href="/projects">All projects</a></li>
-        <li><a href="#">Add new member</a></li>
-        <br />
         <li><a href="/projects/{{ $project->id }}/edit">Edit</a></li>
+        <li><a href="#">Create new project</a></li>
+        <li><a href="#">My projects</a></li>
+        <br />
 
         @if($project->user_id == Auth::user()->id)
         <li>
@@ -98,7 +98,23 @@
 
         </li>
         @endif
+      </ol>
 
+      <hr />
+      <h4>Add members</h4>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Email" aria-label="Example text with button addon" aria-describedby="button-addon1">
+        <div class="input-group-prepend">
+          <button class="btn btn-outline-secondary" type="button" id="button-addon1">Add</button>
+        </div>
+      </div>
+      <br />
+      <h4>Team members</h4>
+      <ol class="list-unstyled">
+        <li><a href="#">Dave</a></li>
+        <li><a href="#">Jarwo</a></li>
+        <li><a href="#">Kunti</a></li>
+        <br />
       </ol>
     </div>
 
