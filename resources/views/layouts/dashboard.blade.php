@@ -28,7 +28,7 @@
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
-        <a class="navbar-brand brand-logo" href="index.html">
+        <a class="navbar-brand brand-logo" href="{{ url('/') }}">
           <img src="{{ URL::to('/') }}/StarAdmin/images/logo.svg" alt="logo" />
         </a>
         <a class="navbar-brand brand-logo-mini" href="index.html">
@@ -194,16 +194,52 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="index.html">
-              <i class="menu-icon mdi mdi-television"></i>
-              <span class="menu-title">Show Companies</span>
+            <a class="nav-link" data-toggle="collapse" href="#companies" aria-expanded="false" aria-controls="ui-basic">
+              <i class="menu-icon mdi mdi-content-copy"></i>
+              <span class="menu-title">Companies</span>
+              <i class="menu-arrow"></i>
             </a>
+            <div class="collapse" id="companies">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ route('companies.index') }}">Show companies</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ route('companies.create') }}">Add companies</a>
+                </li>
+              </ul>
+            </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="pages/forms/basic_elements.html">
-              <i class="menu-icon mdi mdi-backup-restore"></i>
-              <span class="menu-title">Show Projects</span>
+            <a class="nav-link" data-toggle="collapse" href="#projects" aria-expanded="false" aria-controls="ui-basic">
+              <i class="menu-icon mdi mdi-content-copy"></i>
+              <span class="menu-title">Projects</span>
+              <i class="menu-arrow"></i>
             </a>
+            <div class="collapse" id="projects">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ route('projects.index') }}">Show projects</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ route('companies.create') }}">Add projects</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#users" aria-expanded="false" aria-controls="ui-basic">
+              <i class="menu-icon mdi mdi-content-copy"></i>
+              <span class="menu-title">Users</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="users">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ route('users.index') }}">Show users</a>
+                </li>
+              </ul>
+            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="pages/forms/basic_elements.html">
@@ -214,7 +250,11 @@
         </ul>
       </nav>
       <!-- partial:main-panel -->
-
+      <div class="main-panel">
+        <div class="content-wrapper">
+          @yield('content')
+        </div>
+      </div>
       <!-- main-panel ends -->
     </div>
     <!-- page-body-wrapper ends -->

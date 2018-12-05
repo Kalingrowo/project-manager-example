@@ -20,9 +20,12 @@ class CompaniesController extends Controller
         //dump(Auth::user()->id);
 
         if(Auth::check()){
+          if(Auth::user()->role_id == 1){
+            $companies = Company::get();
+            return view('companies.index', ['companies' => $companies]);
+          }
           // in the end query used get() to retrieve all rows from table in db
           $companies = Company::where('user_id', Auth::user()->id)->get();
-
           return view('companies.index', ['companies' => $companies]);
         }
 

@@ -21,9 +21,12 @@ class ProjectsController extends Controller
         //dump(Auth::user()->id);
 
         if(Auth::check()){
+          if(Auth::user()->role_id == 1){
+            $projects = Project::get();
+            return view('projects.index', ['projects' => $projects]);
+          }
           // in the end query used get() to retrieve all rows from table in db
           $projects = Project::where('user_id', Auth::user()->id)->get();
-
           return view('projects.index', ['projects' => $projects]);
         }
 

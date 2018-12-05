@@ -1,4 +1,4 @@
-@extends('layouts.app');
+@extends(Auth::user()->role_id == 1 ? 'layouts.dashboard' : 'layouts.app')
 
 @section('content')
   <div class="col-sm-9 col-md-9 col-lg-9 float-left">
