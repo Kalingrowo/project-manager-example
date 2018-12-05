@@ -222,7 +222,7 @@
                   <a class="nav-link" href="{{ route('projects.index') }}">Show projects</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('companies.create') }}">Add projects</a>
+                  <a class="nav-link" href="{{ route('projects.create') }}">Add projects</a>
                 </li>
               </ul>
             </div>

@@ -26,7 +26,6 @@
       </div>
     </div>
   </div>
-
   <!-- Right content -->
   <div class="col-sm-3 col-md-3 col-lg-3 float-right">
     <div class="p-3">

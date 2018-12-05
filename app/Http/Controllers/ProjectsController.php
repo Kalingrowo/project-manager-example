@@ -42,8 +42,14 @@ class ProjectsController extends Controller
     {
         //
         $companies = null;
-        if(!$company_id){
-          $companies = Company::where('user_id', Auth::user()->id)->get();
+        if(Auth::user()->role_id == 1){
+          if(!$company_id){
+            $companies = Company::get();
+          }
+        } else {
+          if(!$company_id){
+            $companies = Company::where('user_id', Auth::user()->id)->get();
+          }
         }
         return view('projects.create', ['company_id'=>$company_id, 'companies'=>$companies]);
     }

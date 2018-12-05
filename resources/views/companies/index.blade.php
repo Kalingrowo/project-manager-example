@@ -12,6 +12,9 @@
             <table class="table table-bordered">
               <thead>
                 <tr>
+                  <th colspan="2">
+                    <center>Actions</center>
+                  </th>
                   <th>
                     Company ID
                   </th>
@@ -32,11 +35,35 @@
               <tbody>
                 @foreach($companies as $company)
                 <tr>
+                  <td>
+                    <a href="/companies/{{ $company->id }}/edit">
+                    Edit
+                    </a>
+                  </td>
+                  <td>
+                    <a
+                      href="/companies/{{ $company->id }}"
+                      onclick="var result=confirm('Are yo sure you wish to delete this Company ({{ $company->name }}) ?');
+                        event.preventDefault();
+                        if(result){
+                          document.getElementById('delete-form-{{$company->id}}').submit();
+                        }"
+                    >
+                    Delete
+                    </a>
+                    <form id="delete-form-{{$company->id}}" action="{{ route ('companies.destroy', [$company->id]) }}"
+                      method="post" style="display: none">
+                      <input type="hidden" name="_method" value="delete">
+                      {{ csrf_field() }}
+                    </form>
+                  </td>
                   <td class="font-weight-medium">
                     {{ $company->id }}
                   </td>
                   <td>
+                    <a href="/companies/{{ $company->id }}">
                     {{ $company->name }}
+                    </a>
                   </td>
                   <td>
                     {{ $company->description }}
