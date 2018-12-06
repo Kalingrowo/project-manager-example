@@ -126,8 +126,14 @@ class ProjectsController extends Controller
                               ]);
 
         if($ProjUpdate){
-          return redirect()->route('projects.show', ['project'=>$project->id])
-                          ->with('success', 'Project update success');
+          if(Auth::user()->role_id == 1){
+            $projects = Project::get();
+            return redirect()->route('projects.index', ['projects' => $projects])
+                            ->with('success', 'Project update success');
+          } else {
+            return redirect()->route('projects.show', ['project'=>$project->id])
+                            ->with('success', 'Project update success');
+          }
         }
         return back()->withInput();
     }

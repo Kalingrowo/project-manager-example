@@ -188,9 +188,6 @@
                   </div>
                 </div>
               </div>
-              <button class="btn btn-success btn-block">New Project
-                <i class="mdi mdi-plus"></i>
-              </button>
             </div>
           </li>
           <li class="nav-item">
@@ -228,23 +225,10 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#users" aria-expanded="false" aria-controls="ui-basic">
-              <i class="menu-icon mdi mdi-content-copy"></i>
-              <span class="menu-title">Users</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="users">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ route('users.index') }}">Show users</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="pages/forms/basic_elements.html">
-              <i class="menu-icon mdi mdi-backup-restore"></i>
-              <span class="menu-title">Show Users</span>
+            <a class="nav-link" href="{{ route('users.index') }}">
+              <i class="menu-icon mdi mdi-sticker"></i>
+              <i class="fa fa-user-o"></i>
+              <span class="menu-title">Show users</span>
             </a>
           </li>
         </ul>

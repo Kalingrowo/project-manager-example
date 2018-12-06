@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
@@ -14,7 +15,14 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
+        if(Auth::check()){
+          if(Auth::user()->role_id == 1){
+            $users = User::get();
+            return view('users.index', ['users'=>$users]);
+          }
+        }
+
+        return view('auth.login');
     }
 
     /**

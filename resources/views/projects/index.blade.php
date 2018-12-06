@@ -12,6 +12,9 @@
             <table class="table table-bordered">
               <thead>
                 <tr>
+                  <th colspan="2">
+                    <center>Actions</center>
+                  </th>
                   <th>
                     Project ID
                   </th>
@@ -22,7 +25,7 @@
                     Description
                   </th>
                   <th>
-                    Company
+                    Company ID
                   </th>
                   <th>
                     Created by
@@ -35,6 +38,28 @@
               <tbody>
                 @foreach($projects as $project)
                 <tr>
+                  <td>
+                    <a href="/projects/{{ $project->id }}/edit">
+                    Edit
+                    </a>
+                  </td>
+                  <td>
+                    <a
+                      href="/projects/{{ $project->id }}"
+                      onclick="var result=confirm('Are yo sure you wish to delete this Project ({{ $project->name }}) ?');
+                        event.preventDefault();
+                        if(result){
+                          document.getElementById('delete-form-{{$project->id}}').submit();
+                        }"
+                    >
+                    Delete
+                    </a>
+                    <form id="delete-form-{{$project->id}}" action="{{ route ('projects.destroy', [$project->id]) }}"
+                      method="post" style="display: none">
+                      <input type="hidden" name="_method" value="delete">
+                      {{ csrf_field() }}
+                    </form>
+                  </td>
                   <td class="font-weight-medium">
                     {{ $project->id }}
                   </td>
