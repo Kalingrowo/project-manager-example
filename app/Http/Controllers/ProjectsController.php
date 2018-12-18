@@ -27,7 +27,11 @@ class ProjectsController extends Controller
           }
           // in the end query used get() to retrieve all rows from table in db
           $projects = Project::where('user_id', Auth::user()->id)->get();
-          return view('projects.index', ['projects' => $projects]);
+          //return view('projects.index', ['projects' => $projects]);
+          $response = [
+            'projects' => $projects
+          ];
+          return response()->json($response, 200);
         }
 
         return view('auth.login');
@@ -62,7 +66,6 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
-        //
         if (Auth::check()) {
           $projCreate = Project::create([
             'name' => $request->input('name'),
@@ -88,11 +91,14 @@ class ProjectsController extends Controller
      */
     public function show(Project $project)
     {
-        //
-        //$Proj = Project::where('id', $project->id)->first();
         $Proj = Project::find($project->id);
         $Comments = $project->comments;
-        return view('projects.show', ['project'=>$Proj, 'comments'=>$Comments]);
+        $response = [
+          'project' => $project,
+          'comments' => $Comments
+        ];
+        return response()->json($response, 200);
+
     }
 
     /**

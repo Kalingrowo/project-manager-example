@@ -81,12 +81,9 @@
                 </div>
             @endif
 
-            <div class="content">
-                <div class="title m-b-md">
-                    PManager Oii !
-                </div>
-
+            <div id="js_app">
             </div>
         </div>
+        <script src="js/app.js"></script>
     </body>
 </html>

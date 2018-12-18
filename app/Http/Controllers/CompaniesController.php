@@ -51,7 +51,6 @@ class CompaniesController extends Controller
      */
     public function store(Request $request)
     {
-        //
         if (Auth::check()) {
           $compCreate = Company::create([
             'name' => $request->input('name'),

@@ -15,7 +15,13 @@ class CommentsController extends Controller
      */
     public function index()
     {
-        //
+        if(Auth::check()){
+          // in the end query used get() to retrieve all rows from table in db
+          $comments = Comment::where('user_id', Auth::user()->id)->get();
+          return view('projects.index', ['projects' => $projects]);
+        }
+
+        return view('auth.login');
     }
 
     /**
